@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>{% block title_head %}Анализатор{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    {% block link %} {% endblock %}
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="{{ url_for('static', filename='css/bar_menu.css') }}"
+    />
+
+    <style>
+        {% block style %} {% endblock %}
+    </style>
+
+</head>
+{% block title_body %} {% endblock %}
+<body>
+<div>
+    <ul class="menu-main">
+        <tr><a href="/" class="">Главная</a></tr>
+        <tr><a href="/client">Личный кабинет</a></tr>
+        <tr><a href="login">Регистрация|Авторизация</a></tr>
+        <tr><a href="">Пользователь: {% if current_user.login %}
+            {{current_user.login}}
+            {% else %}
+            {{"не авторизован"}}
+            {% endif %}</a></tr>
+        <tr><a href="/logout">Выход</a></tr>
+    </ul>
+</div>
+
+{% block content %} {% endblock %}
+
+{% block js %} {% endblock %}
+
+</body>
+</html>
